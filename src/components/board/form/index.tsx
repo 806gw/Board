@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import boardAPI from "../../../api/board";
 import { useNavigate, useParams } from "react-router-dom";
+import AuthChecker from "../../auth/checker";
 
 const BoardForm = () => {
   const params = useParams();
@@ -51,6 +52,8 @@ const BoardForm = () => {
   }, [postId]);
   return (
     <div>
+      <AuthChecker />
+      
       <div>
         <div>
           <TitleInput
