@@ -28,9 +28,11 @@ const BoardForm = () => {
       if (isNaN(postId)) {
         await boardAPI.createPost(request);
         alert("글 작성이 완료되었습니다.");
+        navigate('/')
       } else {
         await boardAPI.updatePost(postId, request);
         alert("글 수정이 완료되었습니다.");
+        navigate('/')
       }
     } catch (error) {}
   };
