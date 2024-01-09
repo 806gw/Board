@@ -2,22 +2,22 @@ import axios from 'axios'
 import customAxios from '.'
 
 const authAPI = {
-  register: (request:any) => {
-    const response = customAxios.post(
+  register: async(request:any) => {
+    const { data } = await customAxios.post(
       `/auth/sign-up`, 
       request
     )
 
-    return response
+    return data
   },
 
   login: async(request:any) => {
-    const response = customAxios.post(
+    const { data } = await customAxios.post(
       `/auth/sign-in`, 
       request
     )
 
-    return response
+    return data
   }
 }
 

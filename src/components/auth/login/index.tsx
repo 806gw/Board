@@ -1,12 +1,14 @@
 import { useState } from "react";
 import authAPI from "../../../api/auth";
 import { sha512 } from "js-sha512";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate()
 
   const onLogin = async () => {
     const request = {
@@ -15,12 +17,14 @@ const Login = () => {
     };
 
     try {
-      await authAPI.login(request);
+      const response = await authAPI.login(request);
+      localStorage.setItem('accessToken', response.data.accessToken)
+      navigate('/')
       alert("로그인이 성공되었습니다.");
-
     } catch (error: any) {
       const status = error.response.data.status;
 
+      
       if (status === 404) {
         alert("아이디 또는 비밀번호가 맞지 않습니다.");
         return;
